@@ -1,9 +1,9 @@
 .popup {
     position: fixed;
     width: 100vw;
-    width: 100dvw;
+    /* width: 100dvw; */
     height: 100vh;
-    height: 100dvh;
+    /* height: 100dvh; */
     box-shadow: inset 100vmax 100vmax rgba(0 0 0 / 0.5);
     z-index: 10;
     inset: 0;

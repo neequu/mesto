@@ -32,7 +32,7 @@ form.addEventListener('submit', e => {
 })
 
 // change state of like buttons
-const likeButtons = document.querySelectorAll('#like-button');
+const likeButtons = document.querySelectorAll('[data-button="like-button"]');
 likeButtons.forEach(button => button.addEventListener('click', () => {
     button.classList.toggle('element__like_active')
 }))
