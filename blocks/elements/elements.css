@@ -1,6 +1,6 @@
 .elements {
     margin-top: 36px;
-    margin-inline: auto;    
+    margin-inline: auto;
     width: min(var(--max-width), 100% - var(--container-padding) * 2);
 
     display: grid;
