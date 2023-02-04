@@ -1,0 +1,13 @@
+.profile__flex-group {
+    margin-top: 22px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .profile__flex-group {
+        gap: 18px;
+    }
+}

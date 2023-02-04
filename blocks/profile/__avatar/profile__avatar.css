@@ -1,0 +1,5 @@
+.profile__avatar {
+    display: flex;
+    align-self: center;
+    padding-inline: 24px;
+}

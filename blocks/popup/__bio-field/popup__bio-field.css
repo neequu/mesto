@@ -1,0 +1,8 @@
+.popup__bio-field {
+    margin-bottom: 46px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0 0 0 / 0.2);
+    padding-bottom: 13px;
+}
+
