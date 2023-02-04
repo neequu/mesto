@@ -10,7 +10,7 @@
     width: min(var(--max-width), 100% - var(--container-padding) * 2);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 720px) {
     .profile {
         flex-direction: row;
         text-align: left;

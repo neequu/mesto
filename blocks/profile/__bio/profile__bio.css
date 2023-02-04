@@ -10,6 +10,8 @@
     white-space: nowrap;
     overflow: hidden;
     max-width: 336px;
+
+    margin-inline: auto;
 }
 
 @media (min-width: 768px) {
