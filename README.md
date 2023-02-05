@@ -18,7 +18,7 @@
 - Flexbox
 - Grid
 
-## JavaScript
+### JavaScript
 
 - Работа с DOM-элементами
 - Динамическое изменение HTML и CSS, благодаря интерактивности от JS
