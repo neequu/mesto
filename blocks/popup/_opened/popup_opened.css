@@ -1,3 +1,4 @@
-.popup.popup_opened {
-    visibility: visible;
+.popup_opened {
+    display: grid;
+    place-items: center;
 }

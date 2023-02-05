@@ -6,9 +6,9 @@
     font-weight: 900;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 720px) {
     .popup__title {
         margin-bottom: 54px;
-
+        font-size: 24px;
     }
 }

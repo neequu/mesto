@@ -11,11 +11,13 @@ const currentName = document.querySelector('#profile-name');
 const currentBio = document.querySelector('#profile-bio');
 
 // open state
-profileEditButton.addEventListener('click', () => {
+profileEditButton.addEventListener('click', openPopup)
+
+function openPopup() {
     popup.classList.add('popup_opened');
     inputName.value = currentName.innerText;
     inputBio.value = currentBio.innerText;
-})
+}
 // closed state
 popupCloseButton.addEventListener('click', closePopup);
 
@@ -24,15 +26,11 @@ function closePopup() {
 }
 
 // prevent refresh and overwrite name + bio
-form.addEventListener('submit', e => {
+form.addEventListener('submit', handleFormSubmit)
+
+function handleFormSubmit(e) {
     e.preventDefault();
     currentName.innerText = inputName.value;
     currentBio.innerText = inputBio.value;
     closePopup();
-})
-
-// change state of like buttons
-const likeButtons = document.querySelectorAll('[data-button="like-button"]');
-likeButtons.forEach(button => button.addEventListener('click', () => {
-    button.classList.toggle('element__like_active')
-}))
+}

@@ -1,0 +1,7 @@
+.popup__form {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 30px;
+}
+

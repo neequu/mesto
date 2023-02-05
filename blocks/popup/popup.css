@@ -9,6 +9,6 @@
     inset: 0;
     overflow: hidden;
 
-    visibility: hidden;
+    display: none;
 }
 
