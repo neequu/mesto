@@ -1,4 +1,8 @@
-
+// elements
+const elements = document.querySelector('#elements')
+// close buttons
+const closeButtons = document.querySelectorAll('[data-button="close"]');
+// cards
 const initialCards = [
     {
       name: 'Архыз',
@@ -26,40 +30,48 @@ const initialCards = [
     }
   ];
 
+initialCards.forEach(card => prependElement(card.name, card.link))
+// close buttons click
+closeButtons.forEach(button => button.addEventListener('click', () => {
+  const closestPopup = button.closest('.popup');
+  closePopup(closestPopup)
+}))
 
-initialCards.forEach(card => appendElement(card.name, card.link))
-
-
-function appendElement(name, link) {
-    const elements = document.querySelector('#elements')
-    const elementTemplate = document.querySelector('#element').content
-    const elementItem = elementTemplate.cloneNode(true)
-
-    elementItem.querySelector('.element__heading').innerText = name
-    elementItem.querySelector('.element__image').src = link
-
-    let likeButton = elementItem.querySelector('[data-button="like-button"]')
-    likeButton.addEventListener('click', () => handleLikeButtonClick(likeButton))
-
-    let deleteButton = elementItem.querySelector('[data-button="delete-button"]')
-    deleteButton.addEventListener('click', () => handleDeleteButtonClick(deleteButton))
-
-    let elementImage = elementItem.querySelector('.element__image');
-    elementImage.addEventListener('click', () => handleImageClick(elementImage, name))
-
-    elements.prepend(elementItem)
+function prependElement(name, link) {
+  const card = createCard(name, link)
+  elements.prepend(card)
 }
-
 function handleLikeButtonClick(likeButton) {
   likeButton.classList.toggle('element__like_active')
 }
-
-function handleDeleteButtonClick(deleteButton) {
-  deleteButton.parentElement.remove()
+function handleDeleteButtonClick(button) {
+  button.closest('article.element').remove()
 }
+function createCard(name, link) {
+  const elementTemplate = document.querySelector('#element').content
+  const elementItem = elementTemplate.cloneNode(true)
+  const elementImage = elementItem.querySelector('.element__image');
+  const deleteButton = elementItem.querySelector('[data-button="delete"]')
+  const likeButton = elementItem.querySelector('[data-button="like"]')
+  
+  likeButton.addEventListener('click', () => handleLikeButtonClick(likeButton))
+  deleteButton.addEventListener('click', () => handleDeleteButtonClick(deleteButton))
 
 
 
+  elementImage.src = link
+  elementImage.alt = name
+  elementImage.addEventListener('click', () => handleImageClick(elementImage, name))
 
+  elementItem.querySelector('.element__heading').innerText = name
 
+  
+  return elementItem
+}
+function openPopup(popup) {
+  popup.classList.add('popup_opened')
+}
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
+}
 

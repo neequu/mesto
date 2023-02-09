@@ -5,20 +5,10 @@ const popupImage = document.querySelector('#popup-img');
 const popupCaption = document.querySelector('#popup-caption');
 
 
-const expandedImageCloseButton = document.querySelector('[data-button="expand-image-close"]');
-expandedImageCloseButton.addEventListener('click', closeImagePopup);
-
 function handleImageClick(image, name) {
   popupImage.src = image.src
   popupCaption.innerText = name
-  openImagePopup();
+  popupImage.alt = name
 
-  console.log(image)
-  console.log(name)
-}
-function openImagePopup() {
-  imagePopup.classList.add('popup_opened');
-}
-function closeImagePopup() {
-  imagePopup.classList.remove('popup_opened');
+  openPopup(imagePopup);
 }

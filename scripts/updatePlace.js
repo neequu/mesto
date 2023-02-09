@@ -1,10 +1,9 @@
-
-// form
-const placeForm = document.querySelector('#place-form');
 // popup
-const popupPlace = document.querySelector('#popup-place');
-// close button
-const popupNewImageCloseButton = document.querySelector('[data-button="new-image-close"]');
+const placePopup = document.querySelector('#popup-place');
+console.log(document.forms)
+// form
+const placeForm = document.forms['place-form'];
+
 // open button
 const newPlaceButton = document.querySelector('#new-place-button');
 // inputs
@@ -12,10 +11,9 @@ const placeNameInput = document.querySelector('[data-input="place-name"]');
 const placeLinkInput = document.querySelector('[data-input="place-link"]');
 
 // open state
-newPlaceButton.addEventListener('click', openPlacePopup)
-
-// closed state
-popupNewImageCloseButton.addEventListener('click', closePlacePopup);
+newPlaceButton.addEventListener('click', () => {
+    openPopup(placePopup)
+})
 
 // prevent refresh and overwrite name + bio
 placeForm.addEventListener('submit', handlePlaceFormSubmit)
@@ -23,16 +21,10 @@ placeForm.addEventListener('submit', handlePlaceFormSubmit)
 function handlePlaceFormSubmit(e) {
     e.preventDefault();
 
-    appendElement(placeNameInput.value, placeLinkInput.value)
+    prependElement(placeNameInput.value, placeLinkInput.value)
 
-    placeNameInput.value = ''
-    placeLinkInput.value = ''
+    e.target.reset()
 
-    closePlacePopup();
+    closePopup(placePopup);
 }
-function openPlacePopup() {
-    popupPlace.classList.add('popup_opened');
-}
-function closePlacePopup() {
-    popupPlace.classList.remove('popup_opened');
-}
+

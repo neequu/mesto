@@ -1,10 +1,8 @@
+// popup
+const profilePopup = document.querySelector('#popup-edit-profile')
 // form
-const profileForm = document.querySelector('#profile-form');
-// popups
-const popupProfile = document.querySelector('#popup-edit-profile');
-// close buttons
-const popupProfileCloseButton = document.querySelector('[data-button="profile-close"');
-// open buttons
+const profileForm = document.forms['profile-form'];
+// open button
 const profileEditButton = document.querySelector('#profile-edit-button');
 // inputs
 const proifleNameInput = document.querySelector('[data-input="profile-name"]');
@@ -17,8 +15,6 @@ const currentProfileBio = document.querySelector('#profile-bio');
 // open state
 profileEditButton.addEventListener('click', updateProfile);
 
-// closed state
-popupProfileCloseButton.addEventListener('click', closeProfilePopup);
 
 // prevent refresh and overwrite name + bio
 profileForm.addEventListener('submit', handleProfileFormSubmit)
@@ -28,16 +24,11 @@ function handleProfileFormSubmit(e) {
     currentProfileName.innerText = proifleNameInput.value;
     currentProfileBio.innerText = profileBioInput.value;
 
-    closeProfilePopup();
+    closePopup(profilePopup);
 }
-function openProfilePopup() {
-    popupProfile.classList.add('popup_opened');
-}
-function closeProfilePopup() {
-    popupProfile.classList.remove('popup_opened');
-}
+
 function updateProfile() {
-    openProfilePopup();
+    openPopup(profilePopup);
 
     proifleNameInput.value = currentProfileName.innerText;
     profileBioInput.value = currentProfileBio.innerText;
