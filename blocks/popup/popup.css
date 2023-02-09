@@ -9,7 +9,12 @@
     inset: 0;
     overflow: hidden;
 
-    display: none;
+    display: grid;
     place-items: center;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 260ms ;
+
 }
 

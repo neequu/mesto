@@ -1,0 +1,12 @@
+.element__delete-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+
+    transition: opacity 260ms;
+}
+
+.element__delete-button:is(:hover,:focus) {
+    opacity: 0.5;
+}

@@ -1,36 +1,65 @@
-const form = document.querySelector('#popup-form');
-// popup
-const popup = document.querySelector('#popup');
-const popupCloseButton = document.querySelector('#popup-close-button');
-const profileEditButton = document.querySelector('#profile-edit-button');
-// inputs
-const inputName = document.querySelector('#input-name');
-const inputBio = document.querySelector('#input-bio');
-// name and bio values
-const currentName = document.querySelector('#profile-name');
-const currentBio = document.querySelector('#profile-bio');
 
-// open state
-profileEditButton.addEventListener('click', openPopup)
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
 
-function openPopup() {
-    popup.classList.add('popup_opened');
-    inputName.value = currentName.innerText;
-    inputBio.value = currentBio.innerText;
+
+initialCards.forEach(card => appendElement(card.name, card.link))
+
+
+function appendElement(name, link) {
+    const elements = document.querySelector('#elements')
+    const elementTemplate = document.querySelector('#element').content
+    const elementItem = elementTemplate.cloneNode(true)
+
+    elementItem.querySelector('.element__heading').innerText = name
+    elementItem.querySelector('.element__image').src = link
+
+    let likeButton = elementItem.querySelector('[data-button="like-button"]')
+    likeButton.addEventListener('click', () => handleLikeButtonClick(likeButton))
+
+    let deleteButton = elementItem.querySelector('[data-button="delete-button"]')
+    deleteButton.addEventListener('click', () => handleDeleteButtonClick(deleteButton))
+
+    let elementImage = elementItem.querySelector('.element__image');
+    elementImage.addEventListener('click', () => handleImageClick(elementImage, name))
+
+    elements.prepend(elementItem)
 }
-// closed state
-popupCloseButton.addEventListener('click', closePopup);
 
-function closePopup() {
-    popup.classList.remove('popup_opened');
+function handleLikeButtonClick(likeButton) {
+  likeButton.classList.toggle('element__like_active')
 }
 
-// prevent refresh and overwrite name + bio
-form.addEventListener('submit', handleFormSubmit)
-
-function handleFormSubmit(e) {
-    e.preventDefault();
-    currentName.innerText = inputName.value;
-    currentBio.innerText = inputBio.value;
-    closePopup();
+function handleDeleteButtonClick(deleteButton) {
+  deleteButton.parentElement.remove()
 }
+
+
+
+
+
+
