@@ -65,12 +65,20 @@
 
         <form name="profile-form" id="profile-form" class="form
           popup__form">
-          <input data-input="profile-name" type="text" class="form__input"
-            placeholder="Жак-Ив Кусто" name="name" required>
-          <input data-input="profile-bio" type="text" class="form__input"
-            placeholder="Исследователь океана" name="bio" required>
-
-          <button type="submit" class="form__submit-button">Сохранить</button>
+          <fieldset class="form__set">
+            <input id="profile-name" data-input="profile-name" type="text"
+              class="form__input"
+              placeholder="Жак-Ив Кусто" name="name" required minlength="2"
+              maxlength="40">
+            <span id="profile-name-error" class="form__input-error"></span>
+            <input id="profile-bio" data-input="profile-bio" type="text"
+              class="form__input"
+              placeholder="Исследователь океана" name="bio" required
+              minlength="2"
+              maxlength="200">
+            <span id="profile-bio-error" class="form__input-error"></span>
+            <button type="submit" class="form__submit-button" disabled>Сохранить</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -82,12 +90,18 @@
 
         <h3 class="popup__title">Новое место</h3>
         <form name="place-form" id="place-form" class="form popup__form">
-          <input data-input="place-name" type="text" class="form__input"
-            placeholder="Название" name="name" required>
-          <input data-input="place-link" type="text" class="form__input"
-            placeholder="Ссылка на картинку" name="link" required>
-
-          <button type="submit" class="form__submit-button">Сохранить</button>
+          <fieldset class="form__set">
+            <input id="place-title" data-input="place-name" type="text"
+              class="form__input"
+              placeholder="Название" name="name" required minlength="2"
+              maxlength="30">
+            <span id="place-title-error" class="form__input-error"></span>
+            <input id="place-link" data-input="place-link" type="url"
+              class="form__input"
+              placeholder="Ссылка на картинку" name="link" required>
+            <span id="place-link-error" class="form__input-error"></span>
+            <button type="submit" class="form__submit-button" disabled>Сохранить</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -106,6 +120,7 @@
     <script defer src="scripts/updateProfile.js"></script>
     <script defer src="scripts/updatePlace.js"></script>
     <script defer src="scripts/expandImage.js"></script>
+    <script defer src="scripts/validate.js"></script>
     <script defer src="scripts/app.js"></script>
   </body>
 </html>

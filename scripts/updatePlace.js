@@ -1,6 +1,5 @@
 // popup
 const placePopup = document.querySelector('#popup-place');
-console.log(document.forms)
 // form
 const placeForm = document.forms['place-form'];
 

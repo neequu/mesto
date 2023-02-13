@@ -2,6 +2,14 @@
 const elements = document.querySelector('#elements')
 // close buttons
 const closeButtons = document.querySelectorAll('[data-button="close"]');
+// handle click
+document.addEventListener('click', e => e.target.classList.contains('popup_opened') ? closePopup(e.target) : '') 
+document.addEventListener('keydown', e => {
+  const currentPopup = document.querySelector('.popup_opened') || null
+  if (currentPopup && e.key === 'Escape') {
+    closePopup(currentPopup);
+  }
+}) 
 // cards
 const initialCards = [
     {
@@ -74,4 +82,3 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
 }
-
