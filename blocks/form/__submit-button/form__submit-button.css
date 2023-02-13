@@ -12,7 +12,7 @@
     transition: opacity 260ms ease;
     cursor: pointer;
 
-    margin-top: 48px;
+    margin-top: 15px;
 }
 
 .form__submit-button:is(:hover, :focus) {
