@@ -15,19 +15,23 @@
     errorElement.textContent = '';
   };
   
-
+const changeSubmitButtonState = (button, validState) => {
+  validState 
+  ? button.removeAttribute('disabled', true) 
+  : button.setAttribute('disabled', true)
+}
 
   const checkValidity = (form, input, classes) => {
     const formButton = form.querySelector(classes.submitButtonSelector);
+    const isValidInput = input.validity.valid
 
-    if (input.validity.valid) {
+    if (isValidInput) {
         hideInputError(form, input, classes)
-        formButton.removeAttribute('disabled')
+        changeSubmitButtonState(formButton, isValidInput)
 
     } else {
-        formButton.setAttribute('disabled', true)  
         showInputError(form, input, input.validationMessage, classes)
-
+        changeSubmitButtonState(formButton, isValidInput)
     }
   }
 
