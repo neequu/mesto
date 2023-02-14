@@ -74,15 +74,18 @@ function createCard(name, link) {
 function openPopup(popup) {
   popup.classList.add('popup_opened')
   document.addEventListener('keyup', handleEscapeKeyPress)
+  resetForm(popup)
 }
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener('keyup', handleEscapeKeyPress)
+  document.removeEventListener('keyup', handleEscapeKeyPress)
 }
 function handleEscapeKeyPress(e) {
-  const currentPopup = document.querySelector('.popup_opened')
+  const currentPopup = document.querySelector('.popup_opened') || null;
   e.key === 'Escape' 
   ? closePopup(currentPopup)
   : ''
+}
+function resetForm(popup) {
+  popup.querySelector('.form').reset()
 }

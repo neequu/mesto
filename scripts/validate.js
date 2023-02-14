@@ -41,6 +41,9 @@ const toggleButtonState = (button, validState) => {
     form.addEventListener('reset', () => {
       setTimeout(() => {  
         toggleButtonState(formButton, false), 0 })
+      inputs.forEach(input => {
+        hideInputError(form, input, classes)
+      }) 
     }) 
 
     inputs.forEach(input => {
