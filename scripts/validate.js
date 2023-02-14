@@ -21,16 +21,20 @@ const toggleButtonState = (button, validState) => {
   : button.setAttribute('disabled', true)
 }
 
+const checkInputValidity = input => input.validity.valid
+
   const checkValidity = (form, input, formButton, classes) => {
-    const isValidInput = input.validity.valid
+    const isValidInput = checkInputValidity(input)
+    const allFormInputs = form.querySelectorAll(classes.inputSelector)
+    const allFormInputsList = Array.from(allFormInputs)
+    const allInputsValid = allFormInputsList.every(input => checkInputValidity(input))
+
+    toggleButtonState(formButton, allInputsValid)
 
     if (isValidInput) {
         hideInputError(form, input, classes)
-        toggleButtonState(formButton, isValidInput)
-
     } else {
         showInputError(form, input, input.validationMessage, classes)
-        toggleButtonState(formButton, isValidInput)
     }
   }
 
