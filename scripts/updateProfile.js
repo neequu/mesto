@@ -29,7 +29,7 @@ function handleProfileFormSubmit(e) {
 
 function updateProfile() {
     openPopup(profilePopup);
-    
+    resetForm(profilePopup); 
     proifleNameInput.value = currentProfileName.innerText;
     profileBioInput.value = currentProfileBio.innerText;
 }

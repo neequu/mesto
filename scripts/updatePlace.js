@@ -11,7 +11,8 @@ const placeLinkInput = document.querySelector('[data-input="place-link"]');
 
 // open state
 newPlaceButton.addEventListener('click', () => {
-    openPopup(placePopup)
+    openPopup(placePopup);
+    resetForm(placePopup); 
 })
 
 // prevent refresh and overwrite name + bio
