@@ -81,10 +81,10 @@ function closePopup(popup) {
   document.removeEventListener('keyup', handleEscapeKeyPress)
 }
 function handleEscapeKeyPress(e) {
-  const currentPopup = document.querySelector('.popup_opened') || null;
-  e.key === 'Escape' 
-  ? closePopup(currentPopup)
-  : ''
+  const openedPopup = document.querySelector('.popup_opened');
+  if (e.key === 'Escape' && openedPopup) {
+    closePopup(currentPopup)
+  } 
 }
 function resetForm(popup) {
   popup.querySelector('.form').reset()
