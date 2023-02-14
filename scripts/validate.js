@@ -15,31 +15,36 @@
     errorElement.textContent = '';
   };
   
-const changeSubmitButtonState = (button, validState) => {
+const toggleButtonState = (button, validState) => {
   validState 
-  ? button.removeAttribute('disabled', true) 
+  ? button.removeAttribute('disabled') 
   : button.setAttribute('disabled', true)
 }
 
-  const checkValidity = (form, input, classes) => {
-    const formButton = form.querySelector(classes.submitButtonSelector);
+  const checkValidity = (form, input, formButton, classes) => {
     const isValidInput = input.validity.valid
 
     if (isValidInput) {
         hideInputError(form, input, classes)
-        changeSubmitButtonState(formButton, isValidInput)
+        toggleButtonState(formButton, isValidInput)
 
     } else {
         showInputError(form, input, input.validationMessage, classes)
-        changeSubmitButtonState(formButton, isValidInput)
+        toggleButtonState(formButton, isValidInput)
     }
   }
 
   const setEventListeners = (form, classes) => {
     const inputs = Array.from(form.querySelectorAll(classes.inputSelector))
+    const formButton = form.querySelector(classes.submitButtonSelector)
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {  
+        toggleButtonState(formButton, false), 0 })
+    }) 
 
     inputs.forEach(input => {
-        input.addEventListener('input', () => checkValidity(form, input, classes))
+        input.addEventListener('input', () => checkValidity(form, input, formButton, classes))
     })
   }
 

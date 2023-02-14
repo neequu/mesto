@@ -73,7 +73,7 @@ function createCard(name, link) {
 }
 function openPopup(popup) {
   popup.classList.add('popup_opened')
-  popup.addEventListener('keydown', handleEscapeKeyPress)
+  document.addEventListener('keyup', handleEscapeKeyPress)
 }
 
 function closePopup(popup) {
@@ -81,6 +81,7 @@ function closePopup(popup) {
   popup.removeEventListener('keyup', handleEscapeKeyPress)
 }
 function handleEscapeKeyPress(e) {
+  const currentPopup = document.querySelector('.popup_opened')
   e.key === 'Escape' 
   ? closePopup(currentPopup)
   : ''
