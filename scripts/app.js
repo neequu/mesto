@@ -61,12 +61,19 @@ const settings = {
   errorClass: 'form__input-error_active'
 }
 // validate each form
-Array.from(document.forms).forEach(form => {
-  const val = new FormValidator(settings, form)
-  val.enableValidation()
-})
+const profileValidation = new FormValidator(settings, profileForm)
+profileValidation.enableValidation()
+
+const placeValidation = new FormValidator(settings, placeForm)
+placeValidation.enableValidation()
+
 // handle click
-document.addEventListener('click', e => e.target.classList.contains('popup_opened') ? closePopup(e.target) : '') 
+document.querySelectorAll('.popup').forEach(x => x.addEventListener('click', e => {
+  if (e.target.classList.contains('popup_opened')) {
+    closePopup(e.target) 
+    resetForm(e.target)
+  }
+}))  
 // open state
 profileEditButton.addEventListener('click', updateProfile);
 // prevent refresh and overwrite name + bio
@@ -77,7 +84,10 @@ closeButtons.forEach(button => button.addEventListener('click', () => {
   closePopup(closestPopup)
 }))
 // create card for each element
-initialCards.forEach(card => prependElement(card))
+initialCards.forEach(card => {
+  const tempCard = createCard(card)
+  prependElement(tempCard)
+})
 // open state
 newPlaceButton.addEventListener('click', () => {
   openPopup(placePopup);
@@ -98,10 +108,13 @@ function handleEscapeKeyPress(e) {
   if (e.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup)
+    resetForm(openedPopup)
   } 
 }
 function resetForm(popup) {
   popup.querySelector('.form').reset()
+  popup.querySelectorAll('form__input-error').forEach(error => error.textContent = '')
+  console.log('hello')
 }
 function handleImageClick(image, name) {
   popupImage.src = image.src
@@ -109,26 +122,32 @@ function handleImageClick(image, name) {
   popupImage.alt = name
   openPopup(imagePopup);
 }
-function prependElement(data) {
-  const card = new Card(data, '#element',handleImageClick, openPopup, closePopup, handleEscapeKeyPress)
+function prependElement(element) {
+  elements.prepend(element)
+}
+function createCard(data) {
+  const card = new Card(data, '#element',handleImageClick)
   const cardElement = card.generateCard()
-  elements.prepend(cardElement)
+  return cardElement
 }
 function handlePlaceFormSubmit(e) {
     e.preventDefault();
-    prependElement({name: placeNameInput.value, link: placeLinkInput.value})
+
+    const tempCard = createCard({name: placeNameInput.value, link: placeLinkInput.value})
+    prependElement(tempCard)
+
     e.target.reset()
     closePopup(placePopup);
 }
 function handleProfileFormSubmit(e) {
   e.preventDefault();
-  currentProfileName.innerText = proifleNameInput.value;
-  currentProfileBio.innerText = profileBioInput.value;
+  currentProfileName.textContent = proifleNameInput.value;
+  currentProfileBio.textContent = profileBioInput.value;
   closePopup(profilePopup);
 }
 function updateProfile() {
   openPopup(profilePopup);
-  resetForm(profilePopup); 
-  proifleNameInput.value = currentProfileName.innerText;
-  profileBioInput.value = currentProfileBio.innerText;
+  proifleNameInput.value = currentProfileName.textContent;
+  profileBioInput.value = currentProfileBio.textContent;
 }
+
