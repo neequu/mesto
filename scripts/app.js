@@ -71,7 +71,6 @@ placeValidation.enableValidation()
 document.querySelectorAll('.popup').forEach(x => x.addEventListener('click', e => {
   if (e.target.classList.contains('popup_opened')) {
     closePopup(e.target) 
-    resetForm(e.target)
   }
 }))  
 // open state
@@ -97,6 +96,7 @@ newPlaceButton.addEventListener('click', () => {
 placeForm.addEventListener('submit', handlePlaceFormSubmit)
 
 function openPopup(popup) {
+  if (popup.id === 'popup-edit-profile') resetForm(popup)
   popup.classList.add('popup_opened')
   document.addEventListener('keyup', handleEscapeKeyPress)
 }
@@ -108,17 +108,14 @@ function handleEscapeKeyPress(e) {
   if (e.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup)
-    resetForm(openedPopup)
   } 
 }
 function resetForm(popup) {
   popup.querySelector('.form').reset()
-  popup.querySelectorAll('form__input-error').forEach(error => error.textContent = '')
-  console.log('hello')
 }
 function handleImageClick(image, name) {
   popupImage.src = image.src
-  popupCaption.innerText = name
+  popupCaption.textContent = name
   popupImage.alt = name
   openPopup(imagePopup);
 }
