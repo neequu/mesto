@@ -97,6 +97,7 @@ placeForm.addEventListener('submit', handlePlaceFormSubmit)
 
 function openPopup(popup) {
   if (popup.id === 'popup-edit-profile') resetForm(popup)
+  
   popup.classList.add('popup_opened')
   document.addEventListener('keyup', handleEscapeKeyPress)
 }
