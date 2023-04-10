@@ -70,9 +70,9 @@ placeValidation.enableValidation()
 // handle click
 document.querySelectorAll('.popup').forEach(x => x.addEventListener('click', e => {
   if (e.target.classList.contains('popup_opened')) {
-    closePopup(e.target) 
+    closePopup(e.target)
   }
-}))  
+}))
 // open state
 profileEditButton.addEventListener('click', updateProfile);
 // prevent refresh and overwrite name + bio
@@ -90,14 +90,12 @@ initialCards.forEach(card => {
 // open state
 newPlaceButton.addEventListener('click', () => {
   openPopup(placePopup);
-  resetForm(placePopup); 
+  resetForm(placePopup);
 })
 // prevent refresh and overwrite name + bio
 placeForm.addEventListener('submit', handlePlaceFormSubmit)
 
 function openPopup(popup) {
-  if (popup.id === 'popup-edit-profile') resetForm(popup)
-  
   popup.classList.add('popup_opened')
   document.addEventListener('keyup', handleEscapeKeyPress)
 }
@@ -109,7 +107,7 @@ function handleEscapeKeyPress(e) {
   if (e.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup)
-  } 
+  }
 }
 function resetForm(popup) {
   popup.querySelector('.form').reset()
@@ -124,18 +122,18 @@ function prependElement(element) {
   elements.prepend(element)
 }
 function createCard(data) {
-  const card = new Card(data, '#element',handleImageClick)
+  const card = new Card(data, '#element', handleImageClick)
   const cardElement = card.generateCard()
   return cardElement
 }
 function handlePlaceFormSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const tempCard = createCard({name: placeNameInput.value, link: placeLinkInput.value})
-    prependElement(tempCard)
+  const tempCard = createCard({ name: placeNameInput.value, link: placeLinkInput.value })
+  prependElement(tempCard)
 
-    e.target.reset()
-    closePopup(placePopup);
+  e.target.reset()
+  closePopup(placePopup);
 }
 function handleProfileFormSubmit(e) {
   e.preventDefault();
