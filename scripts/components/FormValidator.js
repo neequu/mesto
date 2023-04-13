@@ -30,7 +30,7 @@ export default class FormValidator {
 
     _checkValidity(input) {
         const isValidInput = this._checkInputValidity(input)
-        this._toggleButtonState()
+        this.toggleButtonState()
     
         if (isValidInput) {
             this._hideInputError(input)
@@ -39,19 +39,13 @@ export default class FormValidator {
         }
     }
 
-    _toggleButtonState() {
+    toggleButtonState() {
         return this._allInputsValid()
         ? this._formButton.removeAttribute('disabled') 
         : this._formButton.setAttribute('disabled', true)
     }
 
     _setEventListeners() {
-
-        this._formElement.addEventListener('reset', () => {
-                this._inputList.forEach(input => {
-                    this._hideInputError(input)
-                }) 
-            }) 
       
           this._inputList.forEach(input => input.addEventListener('input', () => this._checkValidity(input)))
     }
