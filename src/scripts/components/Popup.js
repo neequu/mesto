@@ -19,6 +19,7 @@ export default class Popup {
         e.key === 'Escape' ? this.close() : ''
     }
 
+
     setEventListeners() {
         this._closeButton.addEventListener('click', () => this.close())
 

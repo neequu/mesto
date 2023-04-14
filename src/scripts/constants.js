@@ -4,7 +4,9 @@ const profileForm = document.forms['profile-form'];
 // open button
 const newPlaceButton = document.querySelector('#new-place-button');
 const profileEditButton = document.querySelector('#profile-edit-button');
-
+// fields
+const profileNameInput = document.querySelector('[data-input="profile-name"]')
+const profileBioInput = document.querySelector('[data-input="profile-bio"]')
 // cards
 const items = [
     {
@@ -40,4 +42,4 @@ const settings = {
     errorClass: 'form__input-error_active'
 }
 
-export {settings, items, placeForm, profileForm, newPlaceButton, profileEditButton}
+export {settings, items, placeForm, profileForm, newPlaceButton, profileEditButton, profileNameInput, profileBioInput}
