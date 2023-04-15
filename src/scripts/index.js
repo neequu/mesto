@@ -30,7 +30,8 @@ imagePopup.setEventListeners()
 
 const profilePopup = new PopupWithForm({
   popupSelector: '#popup-edit-profile', 
-  handleFormSubmit: data => userinfo.setUserInfo(data)})
+  handleFormSubmit: data => userinfo.setUserInfo(data)
+})
 
 profilePopup.setEventListeners()
 
