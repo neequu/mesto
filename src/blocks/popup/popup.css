@@ -14,6 +14,5 @@
 
     visibility: hidden;
     opacity: 0;
-    transition: visibility 400ms, opacity 460ms;
 }
 

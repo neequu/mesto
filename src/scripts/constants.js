@@ -1,39 +1,17 @@
 // form
 const placeForm = document.forms['place-form'];
 const profileForm = document.forms['profile-form'];
+
+const avatarForm = document.forms['avatar-form']; 
 // open button
 const newPlaceButton = document.querySelector('#new-place-button');
 const profileEditButton = document.querySelector('#profile-edit-button');
+const changeAvatar = document.querySelector('#change-avatar'); 
 // fields
 const profileNameInput = document.querySelector('[data-input="profile-name"]')
-const profileBioInput = document.querySelector('[data-input="profile-bio"]')
-// cards
-const items = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+const profileAboutInput = document.querySelector('[data-input="profile-about"]')
+const avatar = document.querySelector('#profile-avatar')
+
   // settings for validation
 const settings = {
     inputSelector: '.form__input',
@@ -42,4 +20,4 @@ const settings = {
     errorClass: 'form__input-error_active'
 }
 
-export {settings, items, placeForm, profileForm, newPlaceButton, profileEditButton, profileNameInput, profileBioInput}
+export {settings, placeForm, profileForm, newPlaceButton, profileEditButton, profileNameInput, profileAboutInput, avatarForm, changeAvatar, avatar}

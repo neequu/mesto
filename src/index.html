@@ -13,18 +13,20 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile/avatar.png')%>"
-        alt="фотография профиля">
+        <div class="profile__avatar-container" id="change-avatar">
+          <img id="profile-avatar" class="profile__avatar" src="<%=require('./images/profile/loading.gif')%>"
+          alt="фотография профиля">
+        </div>
 
         <div class="profile__info">
 
           <div class="profile__person-info">
             <div class="profile__flex-group">
-              <h1 id="profile-name" class="profile__name">Жак-Ив Кусто</h1>
+              <h1 id="profile-name" class="profile__name"></h1>
               <button id="profile-edit-button" class="profile__edit-button"
                 type="button" data-button="popup-open"></button>
             </div>
-            <p id="profile-bio" class="profile__bio">Исследователь океана</p>
+            <p id="profile-about" class="profile__about"></p>
           </div>
 
           <button class="profile__add-button" type="button"
@@ -41,8 +43,11 @@
               alt="фотография">
             <div class="element__info">
               <h2 class="element__heading"></h2>
-              <button type="button" data-button="like"
-                class="element__like"></button>
+              <div class="element__like-container">
+                <button type="button" data-button="like"
+                  class="element__like"></button>
+                <p class="element__like-counter">0</p>
+              </div>
             </div>
           </article>
         </template>
@@ -68,16 +73,36 @@
           <fieldset class="form__set">
             <input id="name" data-input="profile-name" type="text"
               class="form__input"
-              placeholder="Жак-Ив Кусто" name="name" required minlength="2"
+              placeholder="Ваше имя" name="name" required minlength="2"
               maxlength="40">
             <span id="name-error" class="form__input-error">заполните
               поле</span>
-            <input id="bio" data-input="profile-bio" type="text"
+            <input id="about" data-input="profile-about" type="text"
               class="form__input"
-              placeholder="Исследователь океана" name="bio" required
+              placeholder="О себе" name="about" required
               minlength="2"
               maxlength="200">
-            <span id="bio-error" class="form__input-error"></span>
+            <span id="about-error" class="form__input-error"></span>
+            <button type="submit" class="form__submit-button" disabled>Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"
+          data-button="close"></button>
+
+        <h3 class="popup__title">Обновить аватар</h3>
+
+        <form name="avatar-form" id="avatar-form" class="form
+          popup__form">
+          <fieldset class="form__set">
+            <input id="avatar-link" data-input="avatar-link" type="url"
+              class="form__input"
+              placeholder="Ссылка на картинку" name="link" required>
+            <span id="avatar-link-error" class="form__input-error"></span>
             <button type="submit" class="form__submit-button" disabled>Сохранить</button>
           </fieldset>
         </form>
@@ -101,7 +126,7 @@
               class="form__input"
               placeholder="Ссылка на картинку" name="link" required>
             <span id="place-link-error" class="form__input-error"></span>
-            <button type="submit" class="form__submit-button" disabled>Сохранить</button>
+            <button type="submit" class="form__submit-button" disabled>Создать</button>
           </fieldset>
         </form>
       </div>
@@ -115,6 +140,19 @@
           <img id="popup-img" class="popup__img">
           <figcaption id="popup-caption" class="popup__caption"></figcaption>
         </figure>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-confirmation">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"
+          data-button="close"></button>
+        <h3 class="popup__title popup__title_type_confirmation">Вы уверены?</h3>
+        <form name="confirm-form" id="confirm-form" class="form popup__form">
+            <button type="submit" class="form__submit-button">Да</button>
+          </fieldset>
+        </form>
+
       </div>
     </div>
 
