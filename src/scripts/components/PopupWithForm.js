@@ -40,4 +40,10 @@ export default class PopupWithForm extends Popup {
         ? this._submitButton.textContent = 'Сохранение...'
         : this._submitButton.textContent = this._submitButtonText
     }
+
+    setInputValues(data) {
+        this._inputList.forEach(input => {
+            input.value = data[input.name]
+        })
+    }
 }

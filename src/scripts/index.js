@@ -9,7 +9,7 @@ import Section from './components/Section.js'
 import UserInfo from './components/UserInfo.js'
 import Api from './components/Api.js'
 
-import {settings, placeForm, profileForm, newPlaceButton, profileEditButton, profileNameInput, profileAboutInput, avatarForm, changeAvatar, avatar} from './constants.js'
+import {settings, placeForm, profileForm, newPlaceButton, profileEditButton, avatarForm, changeAvatar, avatar} from './constants.js'
 
 // api
 const api = new Api({
@@ -41,14 +41,10 @@ const userinfo = new UserInfo({
 profileEditButton.addEventListener('click', () => {
   profileValidation.toggleButtonState()
   const {name, about} = userinfo.getUserInfo()
-  fillUserInfoInForm({name, about})
+  profilePopup.setInputValues({name, about})
   profilePopup.open()
 })
 
-function fillUserInfoInForm({name, about}) {
-  profileNameInput.value = name
-  profileAboutInput.value = about
-}
 // place popup
 const placePopup = new PopupWithForm({
   popupSelector: '#popup-place', 

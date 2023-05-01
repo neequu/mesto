@@ -20,4 +20,4 @@ const settings = {
     errorClass: 'form__input-error_active'
 }
 
-export {settings, placeForm, profileForm, newPlaceButton, profileEditButton, profileNameInput, profileAboutInput, avatarForm, changeAvatar, avatar}
+export {settings, placeForm, profileForm, newPlaceButton, profileEditButton, avatarForm, changeAvatar, avatar}
