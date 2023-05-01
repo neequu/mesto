@@ -55,9 +55,13 @@ const placePopup = new PopupWithForm({
   handleFormSubmit: data => {
     placePopup.setLoadingState(true)
     api.addCard(data)
-      .then(data => cardList.addItem(createCard(data)))
+      .then(data => {
+        cardList.addItem(createCard(data))
+        placePopup.close()
+      })
       .catch(err => console.log(`Ошика: ${err}`))
-    placePopup.setLoadingState(false)
+      .finally(() => placePopup.setLoadingState(false))
+
     
   }
 })
@@ -76,9 +80,12 @@ const avatarPopup = new PopupWithForm({
   handleFormSubmit: data => {
     avatarPopup.setLoadingState(true)
     api.editAvatar(data)
-      .then(data => avatar.src = data.avatar)
+      .then(data => {
+        avatar.src = data.avatar
+        avatarPopup.close()
+      })
       .catch(err => console.log(`Ошика: ${err}`))
-    avatarPopup.setLoadingState(true)
+      .finally(() => avatarPopup.setLoadingState(false))
     }
 })
 
@@ -137,9 +144,12 @@ const profilePopup = new PopupWithForm({
   handleFormSubmit: data => {
     profilePopup.setLoadingState(true)
     api.editUserInfo(data)
-      .then(res => userinfo.setUserInfo(res))
+      .then(res => {
+        userinfo.setUserInfo(res)
+        profilePopup.close()
+      })
       .catch(err => console.log(`Ошибка: ${err}`))
-    profilePopup.setLoadingState(false)
+      .finally(() => profilePopup.setLoadingState(false))
   }
 })
 
