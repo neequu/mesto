@@ -9,7 +9,7 @@ import Section from './components/Section.js'
 import UserInfo from './components/UserInfo.js'
 import Api from './components/Api.js'
 
-import {settings, placeForm, profileForm, newPlaceButton, profileEditButton, avatarForm, changeAvatar, avatar} from './constants.js'
+import {settings, placeForm, profileForm, newPlaceButton, profileEditButton, avatarForm, changeAvatar} from './constants.js'
 
 // api
 const api = new Api({
@@ -29,18 +29,12 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   cardList.render(initialCards)
 })
 .catch(err => console.log(`Ошибка:${err}`))
+
 // user information
 const userinfo = new UserInfo({
   name: '#profile-name', 
   about: '#profile-about', 
   avatar: '#profile-avatar'
-})
-
-profileEditButton.addEventListener('click', () => {
-  profileValidation.toggleButtonState()
-  const {name, about} = userinfo.getUserInfo()
-  profilePopup.setInputValues({name, about})
-  profilePopup.open()
 })
 
 // place popup
@@ -55,8 +49,6 @@ const placePopup = new PopupWithForm({
       })
       .catch(err => console.log(`Ошика: ${err}`))
       .finally(() => placePopup.setLoadingState(false))
-
-    
   }
 })
 
@@ -68,7 +60,6 @@ newPlaceButton.addEventListener('click', () => {
 })
 
 // avatar popup
-
 const avatarPopup = new PopupWithForm({
   popupSelector: '#popup-avatar',
   handleFormSubmit: data => {
@@ -84,8 +75,9 @@ const avatarPopup = new PopupWithForm({
 })
 
 avatarPopup.setEventListeners()
+
 changeAvatar.addEventListener('click', () => {
-  placeValidation.toggleButtonState()
+  avatarValidation.toggleButtonState()
   avatarPopup.open()
 })
 
@@ -124,6 +116,7 @@ const createCard = data => {
   const cardElement = card.generateCard()
   return cardElement
 }
+
 // validate 
 const profileValidation = new FormValidator(settings, profileForm)
 profileValidation.enableValidation()
@@ -131,6 +124,7 @@ const placeValidation = new FormValidator(settings, placeForm)
 placeValidation.enableValidation()
 const avatarValidation = new FormValidator(settings, avatarForm)
 avatarValidation.enableValidation()
+
 // image popup
 const imagePopup = new PopupWithImage('#popup-expand-image')
 imagePopup.setEventListeners()
@@ -152,8 +146,17 @@ const profilePopup = new PopupWithForm({
 
 profilePopup.setEventListeners()
 
+profileEditButton.addEventListener('click', () => {
+  profileValidation.toggleButtonState()
+  const {name, about} = userinfo.getUserInfo()
+  profilePopup.setInputValues({name, about})
+  profilePopup.open()
+})
+
+
 // confirmation popup
 const confirmationPopup = new PopupWithConfirmation({
   popupSelector: '#popup-confirmation'
 })
+
 confirmationPopup.setEventListeners()
