@@ -28,9 +28,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   userinfo.setUserInfo(userData)
   cardList.render(initialCards)
 })
-.catch((err) => {
-  console.log(`Ошибка:${err}`);
-});
+.catch(err => console.log(`Ошибка:${err}`))
 // user information
 const userinfo = new UserInfo({
   name: '#profile-name', 
@@ -77,7 +75,7 @@ const avatarPopup = new PopupWithForm({
     avatarPopup.setLoadingState(true)
     api.editAvatar(data)
       .then(data => {
-        avatar.src = data.avatar
+        userinfo.setUserInfo(data)
         avatarPopup.close()
       })
       .catch(err => console.log(`Ошика: ${err}`))
@@ -105,8 +103,11 @@ const createCard = data => {
       confirmationPopup.open()
       confirmationPopup.submit(() => {
         api.deleteCard(cardId)
-        .then(() => card.deleteCard())
-        .catch(err => console.log(`Ошибка: ${err}`))
+          .then(() => {
+            card.deleteCard()
+            confirmationPopup.close()
+          })
+          .catch(err => console.log(`Ошибка: ${err}`))
       })
     },
     handleSetLike: cardId => {
@@ -154,5 +155,5 @@ profilePopup.setEventListeners()
 // confirmation popup
 const confirmationPopup = new PopupWithConfirmation({
   popupSelector: '#popup-confirmation'
-});
-confirmationPopup.setEventListeners();
+})
+confirmationPopup.setEventListeners()
